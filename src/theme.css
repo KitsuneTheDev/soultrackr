@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+    --color-day-bg: #F2F9F1;
+    --color-day-surface: #DFF4E4;
+    --color-day-text: #1F3A2F;
+    --color-day-accent: #84C69B;
+    --color-day-border: #CDE2D0;
+    --color-night-bg: #1A1D2A;
+    --color-night-surface: #2B2F42;
+    --color-night-text: #E4EAF2;
+    --color-night-accent: #788BFF;
+    --color-night-border: #3E445B;
+}
