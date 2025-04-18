@@ -1,11 +1,14 @@
 import './App.css'
-import Navbar from "./components/Navbar";
+import Layout from './components/Layout.jsx';
+import Daily from './components/Daily.jsx';
 
 function App() {
 
   return (
-    <Navbar />
-  )
+    <Layout>
+      <Daily />
+    </Layout>
+  );
 }
 
 export default App
