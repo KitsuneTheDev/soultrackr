@@ -38,12 +38,12 @@ export default function Navbar() {
 
     return(
         <>
-            <nav className="navbar-container h-1/16 pl-4 w-full max-md:px-16 max-sm:flex max-sm:flex-col max-sm:justify-start max-sm:items-center max-sm:p-0 outline-2 transition-all duration-500 ease-out outline-day-border text-day-text dark:outline-night-border dark:text-night-text grid grid-cols-7 grid-rows-1">
-                <div className="site-logo-container pt-4 col-span-1 flex items-start justify-center mb-5 gap-2 mx-4 md:mx-8 max-sm:mx-16">
+            <nav className="navbar-container h-1/16 pl-4 w-full md:px-16 max-sm:p-0 max-sm:pt-22 outline-2 transition-all duration-500 ease-out outline-day-border text-day-text dark:outline-night-border dark:text-night-text grid grid-cols-7 grid-rows-1">
+                <div className="site-logo-container pt-4 col-span-1 flex items-start max-sm:absolute max-sm:top-[-8px] left-[-60px] justify-center mb-5 gap-2 mx-4 md:mx-8 max-sm:mx-16">
                     <img src={siteLogo} alt="site logo" width={32} className="rounded-2xl" />
                     <h1 className="text-2xl text-day-text dark:text-night-text font-bold">Soultrackr</h1>
                 </div>
-                <div className="navbar-elements-container col-span-5 py-8 max-sm:p-0">
+                <div className="navbar-elements-container col-span-5 py-8 max-sm:p-0 max-sm:absolute max-sm:right-[20%] max-sm:top-[8%]">
                     <label htmlFor="toggleView" className="toggle-view-switch flex justify-center items-center hover:cursor-pointer" onClick={handleViewToggle}>
                         <input type="checkbox" id="toggleView" className="hidden" />
                         <div className="slider-container flex gap-[42px] w-[32.5px] pl-[16px] h-[16.5px] items-center justify-center relative z-0 dark:bg-day-text bg-day-accent rounded-2xl">
@@ -54,7 +54,7 @@ export default function Navbar() {
                     </label>
                 </div>
                 <div className="toggle-theme-container col-span-1 py-8 max-sm:p-2">
-                    <label htmlFor="toggleTheme" className="toggle-theme-switch flex justify-center items-center hover:cursor-pointer" onClick={handleThemeToggle}>
+                    <label htmlFor="toggleTheme" className="toggle-theme-switch flex justify-center items-center hover:cursor-pointer max-sm:absolute max-sm:left-[20%] max-sm:top-[8%]" onClick={handleThemeToggle}>
                         <input type="checkbox" id="toggleTheme" className="hidden" />
                         <div className={`slider-container w-[32.5px] h-[16.5px] dark:bg-day-text bg-day-accent rounded-2xl relative z-0 flex gap-[42px] items-center justify-center`}>
                             <span className="light">Light</span>
