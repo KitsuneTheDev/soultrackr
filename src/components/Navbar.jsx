@@ -67,3 +67,6 @@ export default function Navbar() {
         </>
     );
 }
+
+// IPad Air Site logo yukarıda
+// Iphone 14 proMax için toggle view çok sağda
