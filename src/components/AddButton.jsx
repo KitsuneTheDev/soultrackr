@@ -1,17 +1,25 @@
+import { useModal } from '../context/ModalContext.jsx';
+
 function AddTaskButton() {};
 
 AddTaskButton.Default = () => {
+
+    const { openModal } = useModal();
+
     return(
         <div className="add-button-default h-fit w-fit absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
-            <button className="w-[320px] h-[64px] rounded-4xl bg-day-accent dark:bg-night-surface text-day-text dark:text-night-text hover:cursor-pointer">Add Task</button>
+            <button className="w-[320px] h-[64px] rounded-4xl bg-day-accent dark:bg-night-surface text-day-text dark:text-night-text hover:cursor-pointer" onClick={openModal}>Add Task</button>
         </div>
     );
 }
 
 AddTaskButton.Floating = () => {
+
+    const { openModal } = useModal();
+
     return(
-        <div className="add-button-floating w-[64px] h-[64px] fixed bottom-[3%] right-[3%] m-0 p-0">
-            <button className="text-3xl rounded-full flex justify-center items-center align-middle leading-none h-full w-full bg-day-accent dark:bg-night-surface hover:cursor-pointer ">&#x271A;</button>
+        <div className="add-button-floating w-[64px] h-[64px] fixed bottom-[5%] right-[2%] m-0 p-0">
+            <button className="text-3xl rounded-full flex justify-center items-center align-middle leading-none h-full w-full bg-day-accent dark:bg-night-surface hover:cursor-pointer " onClick={openModal}>&#x271A;</button>
         </div>
     );
 }
