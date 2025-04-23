@@ -1,18 +1,34 @@
+import { useEffect, useRef } from "react";
 import { useModal } from '../context/ModalContext.jsx';
 
 export default function Modal() {
 
     const { isOpen, closeModal } = useModal();
+    const modalRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if(modalRef.current && !modalRef.current.contains(event.target)) {
+                closeModal();
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+    }, [closeModal])
 
     function handleTaskSubmit() {
-        return null;
+        
     }
 
     if(!isOpen) return null;
 
     if(isOpen) {
         return(
-            <div className='fixed z-50 rounded-2xl w-[50%] h-[80%] bg-day-surface dark:bg-night-surface top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 '>
+            <div className='fixed z-50 rounded-2xl lg:mt-6 xl:mt-5.5 lg:w-[98%] xl:w-[55%] lg:h-[90%] xl:h-[85%] mt-0 w-[98%] h-[98%] bg-day-surface dark:bg-night-surface top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 ' ref={modalRef}>
                 <div className='close-button-container w-fit h-fit fixed right-[1%] top-[1%] z-60'>
                     <button className='font-bold w-[32px] h-[32px] rounded-full hover:cursor-pointer bg-day-bg dark:bg-night-bg ' onClick={closeModal} >X</button>
                 </div>
@@ -24,7 +40,7 @@ export default function Modal() {
                                 <div className='user-input-task w-full'>
                                     <label 
                                     htmlFor="taskName"
-                                    className='text-center flex justify-center items-center mb-4'>Task Name</label>
+                                    className='text-center flex justify-center items-center mb-4'>Task Name *</label>
                                     <input
                                     required
                                     type='text'
@@ -35,7 +51,7 @@ export default function Modal() {
                                 </div>
                                 <div className='user-input-description w-full'>
                                     <label htmlFor="description"
-                                    className='text-center flex justify-center items-center mb-4 mt-2'>Description</label>
+                                    className='text-center flex justify-center items-center mb-4 mt-2'>Description *</label>
                                     <input
                                     required
                                     type="text"
@@ -64,9 +80,8 @@ export default function Modal() {
                                     className='text-center fixed left-1/2 -translate-x-45 translate-y-17'>Activate</label>
                                     <input
                                     type="checkbox"
-                                    id='isDate'
-                                    checked
-                                    className='fixed left-1/2 -translate-x-30 h-5 aspect-square translate-y-17.5 rounded-full ' />
+                                    id='isDate'                                
+                                    className='fixed left-1/2 -translate-x-30 h-5 aspect-square translate-y-17.5 ' />
                                     <input 
                                     type="date"
                                     name="dueDate"
@@ -104,12 +119,12 @@ export default function Modal() {
                                     name='misc'
                                     id='misc'
                                     placeholder='Additional info'
-                                    className='fixed text-center left-1/2 -translate-x-1/2 translate-y-65 w-[94%] border-1 border-day-border dark:border-night-border rounded-2xl' ></textarea>
+                                    className='fixed text-center left-1/2 -translate-x-1/2 translate-y-65 h-15 w-[94%] border-1 border-day-border dark:border-night-border rounded-2xl resize-y max-h-25 min-h-15' ></textarea>
                                 </div>
                             </div>
                             <div className='form-submit-area'>
                                 <label htmlFor="taskSubmit"
-                                className='fixed left-[3%] bottom-[3%] text-center bg-day-bg dark:bg-night-bg border-1 border-day-border dark:border-night-border w-50 h-10 rounded-2xl flex items-center justify-center'>Save</label>
+                                className='fixed left-1/2 md:left-1/2 lg:left-[3%] bottom-[0.5%] md:bottom-[0.5%] lg:bottom-[3%] lg:translate-x-0 md:-translate-x-1/2 -translate-x-1/2 text-center bg-day-bg dark:bg-night-bg border-1 border-day-border dark:border-night-border w-30 lg:w-50 h-8 lg:h-10 rounded-2xl flex items-center justify-center'>Save</label>
                                 <input
                                 type="submit"
                                 id='taskSubmit'
