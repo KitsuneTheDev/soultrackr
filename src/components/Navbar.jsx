@@ -43,8 +43,8 @@ export default function Navbar() {
                     <img src={siteLogo} alt="site logo" width={32} className="rounded-2xl" />
                     <h1 className="text-2xl text-day-text dark:text-night-text font-bold">Soultrackr</h1>
                 </div>
-                <div className="navbar-elements-container col-span-5 py-8 max-sm:p-0 max-sm:absolute max-sm:right-[20%] max-sm:top-[8%]">
-                    <label htmlFor="toggleView" className="toggle-view-switch flex justify-center items-center hover:cursor-pointer" onClick={handleViewToggle}>
+                <div className="navbar-elements-container col-span-5 py-8 max-sm:p-0 max-sm:absolute max-sm:right-[20%] max-sm:top-[8%] flex justify-center items-center">
+                    <label htmlFor="toggleView" className="toggle-view-switch flex justify-center w-fit items-center hover:cursor-pointer" onClick={handleViewToggle}>
                         <input type="checkbox" id="toggleView" className="hidden" />
                         <div className="slider-container flex gap-[42px] w-[32.5px] pl-[16px] h-[16.5px] items-center justify-center relative z-0 dark:bg-day-text bg-day-accent rounded-2xl">
                             <span className="daily">Daily</span>

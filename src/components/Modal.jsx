@@ -1,13 +1,74 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useModal } from '../context/ModalContext.jsx';
+import { useTask } from '../context/TaskContext.jsx';
 
 export default function Modal() {
 
+    const { setTasks }  = useTask();
     const { isOpen, closeModal } = useModal();
     const modalRef = useRef(null);
+    const [userInputs, setUserInputs] = useState({focusLevel: "1"});
+
+    useEffect(() => {
+        console.log("user inputs --> ", userInputs);
+    }, [userInputs]);
+
+    function handleTaskChange(event) {
+        setUserInputs((prevInputs) => {
+            return {...prevInputs, taskname:event.target.value}
+        });
+    }
+
+    function handleDescriptionChange(event) {
+        setUserInputs((prevInputs) => {
+            return {...prevInputs, description:event.target.value}
+        });
+    }
+
+    function handleFocusChange(event) {
+        setUserInputs((prevInputs) => {
+            return {...prevInputs, focusLevel:event.target.value}
+        });
+    }
+
+    function handleDateChange(event) {
+        setUserInputs((prevInputs) => {
+            return {...prevInputs, dueDate:event.target.value}
+        });
+    }
+
+    function handleMailChange(event) {
+        setUserInputs((prevInputs) => {
+            return {...prevInputs, mail:event.target.value}
+        });
+    }
+
+    function handlePhoneChange(event) {
+        setUserInputs((prevInputs) => {
+            return {...prevInputs, phone:event.target.value}
+        });
+    }
+
+    function handleMiscChange(event) {
+        setUserInputs((prevInputs) => {
+            return {...prevInputs, misc:event.target.value}
+        });
+    }
+
+    function handleTaskSubmit(event) {
+        event.preventDefault();
+
+        setTasks(prevTasks => {
+            return [...prevTasks, userInputs]
+        });
+        setUserInputs[{focusLevel: "1"}];
+        closeModal();
+    }
+
 
     useEffect(() => {
         const handleClickOutside = (event) => {
+            console.log(modalRef);
             if(modalRef.current && !modalRef.current.contains(event.target)) {
                 closeModal();
             }
@@ -19,10 +80,6 @@ export default function Modal() {
             document.removeEventListener('mousedown', handleClickOutside);
         }
     }, [closeModal])
-
-    function handleTaskSubmit() {
-        
-    }
 
     if(!isOpen) return null;
 
@@ -47,7 +104,8 @@ export default function Modal() {
                                     name="taskName"
                                     id="taskName"
                                     placeholder='Task Name Here...'
-                                    className={`text-center w-full flex justify-center items-center border-1 border-day-border dark:border-night-border rounded-2xl h-10`} />
+                                    className={`text-center w-full flex justify-center items-center border-1 border-day-border dark:border-night-border rounded-2xl h-10`}
+                                    onChange={handleTaskChange} />
                                 </div>
                                 <div className='user-input-description w-full'>
                                     <label htmlFor="description"
@@ -58,7 +116,8 @@ export default function Modal() {
                                     name='description'
                                     id='description'
                                     placeholder='Description'
-                                    className={`text-center w-full h-10 rounded-2xl flex justify-center items-center border-1 border-day-border dark:border-night-border`} />
+                                    className={`text-center w-full h-10 rounded-2xl flex justify-center items-center border-1 border-day-border dark:border-night-border`}
+                                    onChange={handleDescriptionChange} />
                                 </div>
                                 <div className='user-input-focus w-full'>
                                     <label htmlFor="focusLevel"
@@ -71,7 +130,8 @@ export default function Modal() {
                                     max={"5"}
                                     step={"1"}
                                     defaultValue={"1"}
-                                    className='w-[50%] fixed left-1/2 -translate-x-1/2 ' />
+                                    className='w-[50%] fixed left-1/2 -translate-x-1/2 '
+                                    onChange={handleFocusChange} />
                                 </div>
                                 <div className='user-input-due w-full'>
                                     <label htmlFor="dueDate"
@@ -89,7 +149,7 @@ export default function Modal() {
                                     min={"01.01.2025"}
                                     max={'01.01.2030'}
                                     className='fixed left-1/2 -translate-x-1/2 translate-y-15 border-1 border-day-border dark:border-night-border w-40 h-10 rounded-2xl flex justify-center items-center'
-                                    /*add Default value*/ />
+                                    onChange={handleDateChange} />
                                 </div>
                                 <div className='user-input-mail w-full'>
                                     <label htmlFor="mail"
@@ -99,7 +159,8 @@ export default function Modal() {
                                     name="mail"
                                     id="mail"
                                     placeholder='example@email.com'
-                                    className='flex items-center justify-center translate-y-38 w-full h-10 rounded-2xl border-1 border-day-border dark:border-night-border text-center' />
+                                    className='flex items-center justify-center translate-y-38 w-full h-10 rounded-2xl border-1 border-day-border dark:border-night-border text-center'
+                                    onChange={handleMailChange} />
                                 </div>
                                 <div className='user-input-phone w-full'>
                                     <label htmlFor="phone"
@@ -109,7 +170,8 @@ export default function Modal() {
                                     name='phone'
                                     id='phone'
                                     placeholder='Phone Number'
-                                    className='fixed left-1/2 -translate-x-1/2 w-[94%] h-10 text-center translate-y-47 border-1 border-day-border dark:border-night-border rounded-2xl' />
+                                    className='fixed left-1/2 -translate-x-1/2 w-[94%] h-10 text-center translate-y-47 border-1 border-day-border dark:border-night-border rounded-2xl'
+                                    onChange={handlePhoneChange} />
                                 </div>
                                 <div className='user-input-misc'>
                                     <label htmlFor="misc"
@@ -119,7 +181,8 @@ export default function Modal() {
                                     name='misc'
                                     id='misc'
                                     placeholder='Additional info'
-                                    className='fixed text-center left-1/2 -translate-x-1/2 translate-y-65 h-15 w-[94%] border-1 border-day-border dark:border-night-border rounded-2xl resize-y max-h-25 min-h-15' ></textarea>
+                                    className='fixed text-center left-1/2 -translate-x-1/2 translate-y-65 h-15 w-[94%] border-1 border-day-border dark:border-night-border rounded-2xl resize-y max-h-25 min-h-15'
+                                    onChange={handleMiscChange} ></textarea>
                                 </div>
                             </div>
                             <div className='form-submit-area'>
@@ -128,7 +191,8 @@ export default function Modal() {
                                 <input
                                 type="submit"
                                 id='taskSubmit'
-                                className='hidden' />
+                                className='hidden'
+                                 />
                             </div>
                         </form>
                     </div>
