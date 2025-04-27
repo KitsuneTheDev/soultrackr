@@ -6,9 +6,19 @@
     --color-day-text: #1F3A2F;
     --color-day-accent: #84C69B;
     --color-day-border: #CDE2D0;
+    --color-day-caution: #FB7185;
+    --color-day-caution-hover: #F43F5E;
+    --color-day-safe: #00FF00;
+    --color-day-safe-hover: #7CFC00;
+
+
     --color-night-bg: #1A1D2A;
     --color-night-surface: #2B2F42;
     --color-night-text: #E4EAF2;
     --color-night-accent: #788BFF;
     --color-night-border: #3E445B;
+    --color-night-caution: #EA580C;
+    --color-night-caution-hover: #F97316;
+    --color-night-safe: #228B22;
+    --color-night-safe-hover: #006400;
 }
