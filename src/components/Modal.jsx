@@ -59,7 +59,7 @@ export default function Modal() {
         event.preventDefault();
 
         setTasks(prevTasks => {
-            return [...prevTasks, userInputs]
+            return [...prevTasks, {...userInputs, id:Math.floor(Date.now()/1_000)}]
         });
         setUserInputs[{focusLevel: "1"}];
         closeModal();
