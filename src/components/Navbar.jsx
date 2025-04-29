@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import siteLogo from '../assets/sitelogo.png';
+import { useView } from '../context/ViewContext.jsx';
 
 export default function Navbar() {
 
@@ -8,7 +9,7 @@ export default function Navbar() {
         return localStorage.getItem('theme') === 'dark';
     });
 
-    const [isDaily, setIsDaily] = useState(true);
+    const { isDaily, setIsDaily } = useView();
 
     useEffect(() => {
         if(isDark){

@@ -8,6 +8,13 @@ export default function Modal() {
     const { isOpen, closeModal } = useModal();
     const modalRef = useRef(null);
     const [userInputs, setUserInputs] = useState({focusLevel: "1"});
+    const [dateNow, setDateNow] = useState("");
+
+    useEffect(() => {
+        const today = new Date().toISOString().split("T")[0];
+        console.log("today is -->", today);
+        setDateNow(today);
+    }, [])
 
     useEffect(() => {
         console.log("user inputs --> ", userInputs);
@@ -85,7 +92,10 @@ export default function Modal() {
 
     if(isOpen) {
         return(
-            <div className='fixed z-50 rounded-2xl lg:mt-6 xl:mt-5.5 lg:w-[98%] xl:w-[55%] lg:h-[90%] xl:h-[85%] mt-0 w-[98%] h-[98%] bg-day-surface dark:bg-night-surface top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 ' ref={modalRef}>
+            <div className='fixed z-50 rounded-2xl lg:mt-6 xl:mt-5.5 lg:w-[98%] xl:w-[55%] lg:h-[90%] xl:h-[85%] mt-0 w-[98%] h-[98%]
+            bg-day-surface dark:bg-night-surface
+            top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2
+            border-1 border-day-border dark:border-night-border ' ref={modalRef}>
                 <div className='close-button-container w-fit h-fit fixed right-[1%] top-[1%] z-60'>
                     <button className='font-bold w-[32px] h-[32px] rounded-full hover:cursor-pointer bg-day-bg dark:bg-night-bg ' onClick={closeModal} >X</button>
                 </div>
@@ -146,7 +156,7 @@ export default function Modal() {
                                     type="date"
                                     name="dueDate"
                                     id='dueDate'
-                                    min={"01.01.2025"}
+                                    min={dateNow}
                                     max={'01.01.2030'}
                                     className='fixed left-1/2 -translate-x-1/2 translate-y-15 border-1 border-day-border dark:border-night-border w-40 h-10 rounded-2xl flex justify-center items-center'
                                     onChange={handleDateChange} />

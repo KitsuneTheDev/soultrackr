@@ -54,12 +54,4 @@ export default function Task(props) {
             {/* DUE DATE GOSTERIM DAHA SIK OLMALI */}
         </div>
     );
-
-    /*
-    ----TODO:
-        1-HOVER AKSIYONDA EK BILGILER GELECEK
-        2-TIKLAMA AKSIYONUNDA TUM DETAYLAR GORULECEK
-        3-SILME BUTONU EKLENECEK
-        4-FOCUS CONTEXTE GORE CLASS DEGISIMLERI VE GORUNURLUKLER AYARLANACAK
-    */
 }

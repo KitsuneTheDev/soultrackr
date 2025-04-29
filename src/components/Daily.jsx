@@ -10,7 +10,7 @@ export default function Daily() {
 
     if(tasks.length !== 0) {
         return(
-            <div className={`w-full h-full grid gap-2 lg:grid-cols-6 md:grid-cols-4 max-sm:grid-cols-2`}>
+            <div className={`w-full h-full min-h-full grid gap-2 lg:grid-cols-6 md:grid-cols-4 max-sm:grid-cols-2`}>
                 {tasks?.map((task, index) => {
                     return(
                         <Task key={index} task={task} />
