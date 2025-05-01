@@ -13,7 +13,7 @@ export default function Layout({ children }) {
                 <Modal></Modal>
                 <AddTaskButton.Floating />
             </main>
-            <footer className={`text-center text-xs p-2 opacity-60 border-t-2 border-day-border dark:border-night-border `}>
+            <footer className={`fixed bottom-0 w-full text-center text-xs p-2 max-h-10 h-10 opacity-60 border-t-2 border-day-border dark:border-night-border bg-day-bg dark:bg-night-bg `}>
                 © 2025 Soultrackr
             </footer>
         </div>
