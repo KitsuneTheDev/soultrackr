@@ -18,7 +18,7 @@ AddTaskButton.Floating = () => {
     const { openModal } = useModal();
 
     return(
-        <div className="add-button-floating w-[64px] h-[64px] fixed bottom-[5%] right-[2%] m-0 p-0">
+        <div className="add-button-floating w-[64px] h-[64px] fixed bottom-[5%] right-[2.5%] m-0 p-0">
             <button className="text-3xl rounded-full border-1 border-day-border dark:border-night-border flex justify-center items-center align-middle leading-none h-full w-full bg-day-accent dark:bg-night-surface hover:cursor-pointer " onClick={openModal}>&#x271A;</button>
         </div>
     );

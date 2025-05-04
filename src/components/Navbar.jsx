@@ -39,7 +39,7 @@ export default function Navbar() {
 
     return(
         <>
-            <nav className="navbar-container h-1/16 pl-4 w-full md:px-16 max-sm:p-0 max-sm:pt-22 outline-2 transition-all duration-500 ease-out outline-day-border text-day-text dark:outline-night-border dark:text-night-text grid grid-cols-7 grid-rows-1">
+            <nav className="navbar-container h-20 pl-4 w-full md:px-16 max-sm:p-0 max-sm:pt-22 outline-2 transition-all duration-500 ease-out outline-day-border text-day-text dark:outline-night-border dark:text-night-text grid grid-cols-7 grid-rows-1">
                 <div className="site-logo-container pt-4 col-span-1 flex items-start max-sm:absolute max-sm:top-[-8px] left-[-60px] justify-center mb-5 gap-2 mx-4 md:mx-8 max-sm:mx-16">
                     <img src={siteLogo} alt="site logo" width={32} className="rounded-2xl" />
                     <h1 className="text-2xl text-day-text dark:text-night-text font-bold">Soultrackr</h1>
