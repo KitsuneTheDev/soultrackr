@@ -1,6 +1,8 @@
 import { useTask } from '../context/TaskContext.jsx';
 
-export default function Task(props) {
+function Task() {};
+
+Task.Card = (props) => {
 
     const { setTasks, setDones } = useTask();
     const task = props.task;
@@ -55,3 +57,19 @@ export default function Task(props) {
         </div>
     );
 }
+
+Task.Line = (props) => {
+
+    const task = props.task;
+
+    return(
+        <div className='w-full h-3 flex mt-[0.1rem] gap-0 hover:cursor-pointer'>
+            <span className='relative z-0 left-2 w-[3rem] h-3 bg-day-caution rounded-l-xl border-[1px] border-r-0 border-night-border'>
+                <p className='relative top-0 left-0 -translate-y-1/4 translate-x-1/16 text-xs text-day-text font-medium'>{task.taskname.slice(0,6)}</p>
+            </span>
+            <span className='w-[calc(99%-3rem)] h-1 bg-day-caution rounded-xl border-[1px] border-l-0 border-night-border'></span>
+        </div>
+    );
+}
+
+export default Task;

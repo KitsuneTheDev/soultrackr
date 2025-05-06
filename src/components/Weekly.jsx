@@ -1,8 +1,11 @@
 import { useEffect } from "react";
 import { useDate } from '../context/DateContext.jsx';
+import { useTask } from '../context/TaskContext.jsx';
+import Task from './Task.jsx';
 
 export default function Weekly() {
 
+    const { tasks } = useTask();
     const { dateCodes, dateToday } = useDate();
     const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
     const adjustIndex = (dateToday.getDay() + 6) % 7;
@@ -36,23 +39,22 @@ export default function Weekly() {
                 <span className="fixed top-11 left-2 text-sm text-day-text dark:text-night-text">Hours</span>
             </div>
             <div className="days-name-container bg-day-bg dark:bg-night-bg right-[1.15rem] fixed w-[calc(100%-6.2rem)] h-20 grid grid-rows-1 [grid-template-columns:repeat(7,_calc(100%/7))]">
-                {dayNames.map(day => {
+                {dayNames.map((day, index) => {
                     if(day === dateCodes[dateToday.getDay()]) {
                         return(
-                        <div className="row-span-1 col-span-1 border-r-2 rounded-xl border-day-border dark:border-night-border flex justify-center items-center bg-day-accent/20 dark:bg-night-surface/70">
+                        <div key={index} className="row-span-1 col-span-1 border-r-2 rounded-xl border-day-border dark:border-night-border flex justify-center items-center bg-day-accent/20 dark:bg-night-surface/70">
                             {day}
                         </div>
                         );
                     }
                     return(
-                    <div className="row-span-1 col-span-1 border-r-2 rounded-xl border-day-border dark:border-night-border flex justify-center items-center">
+                    <div key={index} className="row-span-1 col-span-1 border-r-2 rounded-xl border-day-border dark:border-night-border flex justify-center items-center">
                         {day}
                     </div>)
                     ;
                 })}
             </div>
-            <div>
-                <div className="hours-name-container bg-day-bg dark:bg-night-bg overflow-y-auto absolute top-20 h-[calc(100%-5rem)] w-20 grid grid-cols-1 [grid-template-rows:repeat(24,_8rem)]" id="left-container-scroll">
+            <div className="hours-name-container bg-day-bg dark:bg-night-bg overflow-y-auto absolute top-20 h-[calc(100%-5rem)] w-20 grid grid-cols-1 [grid-template-rows:repeat(24,_8rem)]" id="left-container-scroll">
                     {[...Array(24 * 1)].map((_, i) => {
                         return(
                             <div key={i} className="row-span-1 col-span-1 border-b-1 border-day-border dark:border-night-border flex justify-start items-center pl-2">
@@ -60,9 +62,9 @@ export default function Weekly() {
                             </div>
                         );
                     })}
-                </div>
-                <div className="task-display-container bg-amber-800 absolute h-[calc(100%-5rem)] w-[calc(100%-5rem)] left-20 top-20 overflow-hidden">
-                    <div className="task-display bg-day-bg dark:bg-night-bg grid grid-cols-7 [grid-template-rows:repeat(24,_8rem)] gap-0 h-full w-[100%]  overflow-y-auto" id="right-container-scroll">
+            </div>
+            <div className="task-display-container absolute h-[calc(100%-5rem)] w-[calc(100%-5rem)] left-20 top-20 overflow-hidden">
+                    <div className="task-display relative z-20 bg-transparent dark:bg-transparent grid grid-cols-7 [grid-template-rows:repeat(24,_8rem)] gap-0 h-full w-[100%]  overflow-y-auto" id="right-container-scroll">
                         {[...Array(168)].map((_, i) => {
                             const columnIndex = i % 7;
                             return(
@@ -71,17 +73,15 @@ export default function Weekly() {
                             );
                         })}
                     </div>
-                </div>
+                    <div className='z-0 fixed top-20 left-20 w-[calc(100%-6.2rem)] h-[calc(100%-6.2rem)]'>
+                        {tasks.map((task, index) => {
+                            return(
+                                <Task.Line key={index}  task = {task}></Task.Line>
+                            );
+                        })}
+                    </div>
             </div>
-        </div>
+            </div>
+
     );;
 }
-
-/*
-TODO:
-    - Google calendar view
-    - Be sure task rendered at right place
-    - Scrollable 24 hours.
-    - Adjust the current hour in the middle of the container by using useRef.
-    - Highlight the current hour and day. make the intersection darker.
-*/
