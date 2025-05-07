@@ -64,24 +64,24 @@ export default function Weekly() {
                     })}
             </div>
             <div className="task-display-container absolute h-[calc(100%-5rem)] w-[calc(100%-5rem)] left-20 top-20 overflow-hidden">
-                    <div className="task-display relative z-20 bg-transparent dark:bg-transparent grid grid-cols-7 [grid-template-rows:repeat(24,_8rem)] gap-0 h-full w-[100%]  overflow-y-auto" id="right-container-scroll">
-                        {[...Array(168)].map((_, i) => {
-                            const columnIndex = i % 7;
-                            return(
-                                <div key={i} className={`day-container col-span-1 row-span-1 border-1 border-day-border dark:border-night-border rounded-xl
-                                    ${adjustIndex === columnIndex ? `bg-day-accent/20 dark:bg-night-surface/70` : ``}`}></div>
-                            );
-                        })}
-                    </div>
-                    <div className='z-0 fixed top-20 left-20 w-[calc(100%-6.2rem)] h-[calc(100%-6.2rem)]'>
-                        {tasks.map((task, index) => {
-                            return(
-                                <Task.Line key={index}  task = {task}></Task.Line>
-                            );
-                        })}
-                    </div>
+                <div className="task-display relative z-20 bg-transparent dark:bg-transparent grid grid-cols-7 [grid-template-rows:repeat(24,_8rem)] gap-0 h-full w-[100%]  overflow-y-auto" id="right-container-scroll">
+                    {[...Array(168)].map((_, i) => {
+                        const columnIndex = i % 7;
+                        return(
+                            <div key={i} className={`day-container col-span-1 row-span-1 border-1 border-day-border dark:border-night-border rounded-xl
+                                ${adjustIndex === columnIndex ? `bg-day-accent/20 dark:bg-night-surface/70` : ``}`}></div>
+                        );
+                    })}
+                </div>
+                <div className='z-0 fixed top-20 left-20 w-[calc(100%-6.2rem)] h-[calc(100%-6.2rem)]'>
+                    {tasks.map((task, index) => {
+                        return(
+                            <Task.Line key={index}  task = {task}></Task.Line>
+                        );
+                    })}
+                </div>
             </div>
-            </div>
+        </div>
 
     );;
 }

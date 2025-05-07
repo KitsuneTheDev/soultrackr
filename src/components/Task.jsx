@@ -61,13 +61,31 @@ Task.Card = (props) => {
 Task.Line = (props) => {
 
     const task = props.task;
+    const dateDiff = Math.ceil((new Date(task.dueDate) - new Date()) / (1_000 * 60 * 60 * 24));
+    console.log("DateDiff -->", dateDiff);
+
+    if(dateDiff <= 7) {
+
+        const perWidth = (14.14 * dateDiff).toFixed(2);
+
+        return(
+            <div className='w-full h-3 flex mt-[0.1rem] gap-0 hover:cursor-pointer'>
+                <span className='relative z-0 left-2 w-[3rem] h-3 bg-day-caution rounded-l-xl border-[1px] border-r-0 border-night-border'>
+                    <p className='relative top-0 left-0 -translate-y-1/4 translate-x-1/16 text-xs text-day-text font-medium'>{task.taskname.slice(0,6)}</p>
+                </span>
+                <span className={`h-1 bg-day-caution rounded-xl border-[1px] border-l-0 border-night-border`} style={{width: `calc(${perWidth}% - 3rem)`}}></span>
+            </div>    
+        );
+    }
 
     return(
         <div className='w-full h-3 flex mt-[0.1rem] gap-0 hover:cursor-pointer'>
             <span className='relative z-0 left-2 w-[3rem] h-3 bg-day-caution rounded-l-xl border-[1px] border-r-0 border-night-border'>
                 <p className='relative top-0 left-0 -translate-y-1/4 translate-x-1/16 text-xs text-day-text font-medium'>{task.taskname.slice(0,6)}</p>
             </span>
-            <span className='w-[calc(99%-3rem)] h-1 bg-day-caution rounded-xl border-[1px] border-l-0 border-night-border'></span>
+            <span className={`w-[calc(99%-3rem)] h-1 bg-day-caution rounded-xl border-[1px] border-l-0 border-night-border`}></span>
+            <span className='h-1 w-1 bg-day-caution rounded-full border-[1px] border-night-border'></span>
+            <span className='h-1 w-1 bg-day-caution rounded-full border-[1px] border-night-border'></span>
         </div>
     );
 }
