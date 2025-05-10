@@ -1,14 +1,18 @@
 import AddTaskButton from './AddButton.jsx';
 import Navbar from './Navbar.jsx';
 import Modal from './Modal.jsx';
+import Calendar from './Calendar.jsx';
 export default function Layout({ children }) {
 
     return(
         <div className={`min-h-screen w-full bg-day-bg dark:bg-night-bg text-day-text dark:text-night-text transition-color duration-400 flex flex-col`}>
-            <header>
+            <header className='header h-20'>
                 <Navbar />
             </header>
-            <main className={`flex-1 px-4 md:px-8 py-4 w-[100%] h-[100%]`}>
+            <aside className='sidebar absolute bg-day-bg dark:bg-night-bg w-[20%] h-[calc(100%-7.5rem)] top-20 border-r-1 border-t-2 border-day-border dark:border-night-border'>
+                <Calendar />
+            </aside>
+            <main className={`flex-1 px-4 md:px-8 py-4 w-[80%] h-[100%]`}>
                 { children }
                 <Modal></Modal>
                 <AddTaskButton.Floating />

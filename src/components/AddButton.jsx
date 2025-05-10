@@ -7,7 +7,7 @@ AddTaskButton.Default = () => {
     const { openModal } = useModal();
 
     return(
-        <div className="add-button-default h-fit w-fit absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
+        <div className="add-button-default h-fit w-fit absolute top-1/2 left-[60%] -translate-y-1/2 -translate-x-1/2">
             <button className="w-[320px] h-[64px] rounded-4xl border-1 border-day-border dark:border-night-border bg-day-accent dark:bg-night-surface text-day-text dark:text-night-text hover:cursor-pointer" onClick={openModal}>Add Task</button>
         </div>
     );
