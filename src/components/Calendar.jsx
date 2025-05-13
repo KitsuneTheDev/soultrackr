@@ -109,10 +109,12 @@ export default function Calendar() {
                         const isSelected = date.isSame(calendarDate, 'day');
 
                         return(
-                            <div key={index}
+                            <div
+                            key={index}
+                            onClick={() => setCalendarDate(date)}
                             className={`
                                 w-6 h-6 flex items-center justify-center rounded-full
-                                ${isSelected ? 'bg-day-accent dark:bg-night-accent' : ``}
+                                ${isSelected ? 'bg-day-accent dark:bg-night-accent hover:cursor-default' : `hover:cursor-pointer`}
                                 ${isCurrentMonth ? `text-day-text dark:text-night-text font-medium` : `text-day-text/70 dark:text-night-text/70`}
                             `}>
                                 {date.date()}
