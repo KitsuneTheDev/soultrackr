@@ -7,6 +7,11 @@
     width: 20px;
 }
 
+.calendar-container ::-webkit-scrollbar{
+    display: none;
+
+}
+
 .dark ::-webkit-scrollbar-track{
     background: rgb(72, 74, 82);
     border-radius: 10px;
