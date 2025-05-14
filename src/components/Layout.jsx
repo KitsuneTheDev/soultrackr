@@ -12,7 +12,7 @@ export default function Layout({ children }) {
             <aside className='sidebar absolute bg-day-bg dark:bg-night-bg w-[20%] h-[calc(100%-7.5rem)] top-20 border-r-1 border-t-2 border-day-border dark:border-night-border'>
                 <Calendar />
             </aside>
-            <main className={`flex-1 px-4 md:px-8 py-4 w-[80%] h-[100%]`}>
+            <main className={`fixed px-4 md:px-8 py-4 w-[80%] h-[calc(100%-7.5rem)] right-0 bottom-10`}>
                 { children }
                 <Modal></Modal>
                 <AddTaskButton.Floating />
