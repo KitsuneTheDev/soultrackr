@@ -4,7 +4,7 @@
 
 
 ::-webkit-scrollbar{
-    width: 20px;
+    width: 10px;
 }
 
 .calendar-container ::-webkit-scrollbar{
@@ -14,7 +14,7 @@
 
 .dark ::-webkit-scrollbar-track{
     background: rgb(72, 74, 82);
-    border-radius: 10px;
+    border-radius: 0;
 }
 
 ::-webkit-scrollbar-track{
