@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react"; 
 import { useCalendar } from '../context/CalendarContext.jsx';
+import { useModal } from '../context/ModalContext.jsx';
 import dayjs from 'dayjs';
 
 
 export default function Weekly() {
 
     const { calendarDate } = useCalendar();
+    const { openModal, setPosition } = useModal();
 
     const todayDateIndex = dayjs().date();
     console.log("today date index is -->", todayDateIndex);
@@ -49,6 +51,20 @@ export default function Weekly() {
 
         return () => clearInterval(fiveMinInterval);
     }, [])
+
+    function handleGridClick(event) {
+        console.log(event.target);
+        const vpWidth = window.innerWidth;
+        const vpHeight = window.innerHeight;
+        const x = event.clientX + 400 >= innerWidth ? event.clientX - 400 : event.clientX;
+        const y = event.clientY + 400 >= innerHeight ? event.clientY - 400 : event.clientY;
+
+        console.log("x -->", x, "y -->", y);
+        setPosition(prev => {
+            return {...prev, top: y, left: x}
+        })
+        openModal();
+    }
 
     return(
         <div
@@ -113,8 +129,8 @@ export default function Weekly() {
                         return(
                             <div key={index}
                             className={`h-20 w-[calc(91% / 6)] col-span-1 row-span-1 border-[1px] border-day-border dark:border-night-border grid grid-rows-2 grid-cols-1`}>
-                                <div className='half-area-1 w-full h-10 col-span-1 row-span-1'></div>
-                                <div className='half-area-2 w-full h-10 col-span-1 row-span-1s'></div>
+                                <div className='half-area-1 w-full h-10 col-span-1 row-span-1' onClick={handleGridClick}></div>
+                                <div className='half-area-2 w-full h-10 col-span-1 row-span-1s' onClick={handleGridClick}></div>
                             </div>
                         );
                     })}

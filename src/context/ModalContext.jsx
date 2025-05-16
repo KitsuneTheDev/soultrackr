@@ -4,6 +4,14 @@ const ModalContext = createContext();
 
 export function ModalProvider({ children }) {
     const [isOpen, setIsOpen] = useState(false);
+    const [position, setPosition] = useState(() => {
+        const vpWidth = window.innerWidth;
+        const vpHeight = window.innerHeight;
+        const left = vpWidth * 0.5;
+        const top = vpHeight * 0.5;
+
+        return {top: top, left: left}
+    });
 
     const openModal = () => {
         setIsOpen(true);
@@ -17,6 +25,8 @@ export function ModalProvider({ children }) {
         isOpen: isOpen,
         openModal: openModal,
         closeModal: closeModal,
+        position: position,
+        setPosition: setPosition,
     }
 
     return(
