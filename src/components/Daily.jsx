@@ -13,7 +13,7 @@ export default function Daily() {
             <div className={`w-full h-full min-h-full grid gap-2 lg:grid-cols-6 md:grid-cols-4 max-sm:grid-cols-2`}>
                 {tasks?.map((task, index) => {
                     return(
-                        <Task.Card key={index} task={task} />
+                        <Task.Daily key={index} task={task} />
                     ); 
                 })}
             </div>

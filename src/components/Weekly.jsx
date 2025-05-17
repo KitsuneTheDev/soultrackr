@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react"; 
 import { useCalendar } from '../context/CalendarContext.jsx';
 import { useModal } from '../context/ModalContext.jsx';
+import TaskOverlay from "./TaskOverlay.jsx";
 import dayjs from 'dayjs';
 
 
 export default function Weekly() {
 
+    const demoDate = dayjs('2025-05-17 23:27:00');
+    console.log("demoDate -->", demoDate);
+
     const { calendarDate } = useCalendar();
-    const { openModal, setPosition } = useModal();
+    const { openModal, closeModal, isOpen, setPosition } = useModal();
 
     const todayDateIndex = dayjs().date();
     console.log("today date index is -->", todayDateIndex);
@@ -63,7 +67,7 @@ export default function Weekly() {
         setPosition(prev => {
             return {...prev, top: y, left: x}
         })
-        openModal();
+        isOpen ? closeModal() : openModal();
     }
 
     return(
@@ -124,7 +128,8 @@ export default function Weekly() {
                         );
                     })}
                 </div>
-                <div className='task-grid-container h-fit w-[92%] absolute bg-day-surface dark:bg-night-surface grid grid-cols-7 grid-template-rows:repeat(_5rem, 24) left-[9%]'>
+                <div className='task-grid-container h-fit w-[92%] absolute z-10 bg-day-surface dark:bg-night-surface grid grid-cols-7 grid-template-rows:repeat(_5rem, 24) left-[9%]'>
+                    <TaskOverlay.Weekly />
                     {[...Array(168)].map((_, index) => {
                         return(
                             <div key={index}
