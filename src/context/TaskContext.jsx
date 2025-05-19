@@ -6,22 +6,23 @@ const TaskContext = createContext();
 export function TaskProvider({ children }) {
     
     const [tasks, setTasks] = useState(() => {
+        const theDate = dayjs();
         const savedTask = JSON.parse(localStorage.getItem('tasks'));
         if(savedTask) return savedTask;
         return [{
             taskName: "demo1",
-            finishDate: dayjs("2025-05-17 23:49"),
-            startDate: dayjs("2025-05-17 16:50"),
+            finishDate: theDate.add(1, 'hour'),
+            startDate: theDate.format('YYYY-MM-DD HH:mm'),
         },
         {
             taskName: "demo2",
-            finishDate: dayjs("2025-05-18 17:50"),
-            startDate: dayjs("2025-05-18 23:50"),
+            finishDate: theDate.add(47, 'minute'),
+            startDate: theDate.format('YYYY-MM-DD HH:mm'),
         },
         {
             taskName: "demo3",
-            finishDate: dayjs("2025-06-17 18:00"),
-            startDate: dayjs("2025-05-20 18:00"),
+            finishDate: theDate.add(2, 'day'),
+            startDate: theDate.format('YYYY-MM-DD HH:mm'),
         }];
     });
 
