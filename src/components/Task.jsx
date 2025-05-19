@@ -56,6 +56,8 @@ Task.Weekly = ({task}) => {
     );
 }
 
+console.log('HELLO?')
+
 Task.Daily = () => {
     return(
         <div>Demo Daily</div>
