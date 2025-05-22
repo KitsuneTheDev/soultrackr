@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { useCalendar } from '../context/CalendarContext.jsx';
 import { useModal } from '../context/ModalContext.jsx';
 import TaskOverlay from "./TaskOverlay.jsx";
+import { demoTask } from '../constants/demoTask.jsx';
 import dayjs from 'dayjs';
 
 
 export default function Weekly() {
 
-    const demoDate = dayjs('2025-05-17 23:27:00');
-    console.log("demoDate -->", demoDate);
+    console.log("demo tasks --->", demoTask);
 
     const { calendarDate } = useCalendar();
     const { openModal, closeModal, isOpen, setPosition } = useModal();
