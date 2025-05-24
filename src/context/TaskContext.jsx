@@ -1,6 +1,8 @@
 import { createContext, useContext, useState, useEffect, useMemo } from "react";
 import { demoTask } from '../constants/demoTask.jsx';
 import dayjs from "dayjs";
+import { groupTasksByDay } from "../utils/GroupTasksByDay.jsx";
+import { groupOverlappingTasks } from "../utils/groupOverlappingTasks.jsx";
 
 const TaskContext = createContext();
 
@@ -34,6 +36,7 @@ export function TaskProvider({ children }) {
     }
 
     const grouped = useMemo(() => {
+        console.log("grouped tasks by day -->", groupTasksByDay(tasks));
         return groupTasksByDay(tasks); // [{"YYYY-MM-DD":{TASK}}]
     }, [tasks]);
 
