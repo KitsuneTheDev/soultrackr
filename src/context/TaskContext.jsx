@@ -1,8 +1,8 @@
 import { createContext, useContext, useState, useEffect, useMemo } from "react";
-import { demoTask } from '../constants/demoTask.jsx';
+import { demoTask } from '../constants/demoTask.js';
 import dayjs from "dayjs";
-import { groupTasksByDay } from "../utils/GroupTasksByDay.jsx";
-import { groupOverlappingTasks } from "../utils/groupOverlappingTasks.jsx";
+import { groupTasksByDay } from "../utils/groupTasksByDay.js";
+import { groupOverlappingTasks } from "../utils/groupOverlappingTasks.js";
 
 const TaskContext = createContext();
 

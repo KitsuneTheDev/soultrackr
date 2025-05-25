@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useCalendar } from '../context/CalendarContext.jsx';
 import { useModal } from '../context/ModalContext.jsx';
 import TaskOverlay from "./TaskOverlay.jsx";
-import { demoTask } from '../constants/demoTask.jsx';
+import { demoTask } from '../constants/demoTask.js';
 import dayjs from 'dayjs';
 
 
