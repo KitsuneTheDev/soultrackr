@@ -21,13 +21,13 @@ export default function Weekly() {
     const [markerPosition, setMarkerPosition] = useState(() => {
         const todayWeeklyIndex = dayjs().date() - calendarDate.startOf('week').date();
         const hourIndex = dayjs().hour() * 12 + Math.floor(dayjs().minute() / 5);
-
+        
         const gridWidthPercent = 91 / 7;
         const gridHeightPx = 5 * 16; 
 
         const position = {
             left: `calc(9% + ${gridWidthPercent * todayWeeklyIndex}%)`,
-            top: `${hourIndex * (gridHeightPx / 12 )}px`,
+            top: `${(hourIndex * (gridHeightPx / 12 )).toFixed(0)}px`,
         }
 
         console.log("marker position is -->", position);
@@ -38,14 +38,16 @@ export default function Weekly() {
     useEffect(() =>{
         const fiveMinInterval = setInterval(() => {
             setMarkerPosition(() => {
-                const todayWeeklyIndex = dayjs().date() - calendarDate.startOf('week').date();
+                const todayWeeklyIndex = (dayjs().day() + 6) % 7;;
                 const hourIndex = dayjs().hour() * 12 + Math.floor(dayjs().minute() / 5);
                 const gridWidthPercent = 91 / 7;
                 const gridHeightPx = 5 * 16; 
                 const position = {
                     left: `calc(9% + ${gridWidthPercent * todayWeeklyIndex}%)`,
-                    top: `${hourIndex * (gridHeightPx / 12 )}px`,
+                    top: `${(hourIndex * (gridHeightPx / 12 )).toFixed(0)}px`,
                 }
+
+                console.log("position ------------>", position);
             
                 console.log("marker position is -->", position);
             
@@ -128,19 +130,19 @@ export default function Weekly() {
                         );
                     })}
                 </div>
-                <div className='task-grid-container h-fit w-[92%] absolute z-50 bg-day-surface dark:bg-night-surface grid grid-cols-7 grid-template-rows:repeat(_5rem, 24) left-[9%]'>
-                    <TaskOverlay.Weekly />
+                <div className='task-grid-container h-fit w-[92%] relative z-50 bg-day-surface dark:bg-night-surface grid grid-cols-7 grid-template-rows:repeat(_5rem, 24) left-[9%]'>
                     {[...Array(168)].map((_, index) => {
                         return(
                             <div key={index}
                             className={`h-20 w-[calc(91% / 6)] col-span-1 row-span-1 border-[1px] border-day-border dark:border-night-border grid grid-rows-2 grid-cols-1`}>
                                 <div className='half-area-1 w-full h-10 col-span-1 row-span-1' onClick={handleGridClick}></div>
-                                <div className='half-area-2 w-full h-10 col-span-1 row-span-1s' onClick={handleGridClick}></div>
+                                <div className='half-area-2 w-full h-10 col-span-1 row-span-1' onClick={handleGridClick}></div>
                             </div>
                         );
                     })}
+                    <TaskOverlay.Weekly />
                 </div>
-                <div className={`marker relative h-fit w-[96%] z-60`} style={{left: markerPosition.left, top: markerPosition.top}}>
+                <div className={`marker absolute h-fit w-[96%] z-60`} style={markerPosition}>
                     <span className='absolute w-2 h-2 rounded-full bg-night-caution -translate-y-1/2'></span>
                     <hr className={`absolute bg-night-caution top-0 w-[calc(97%/7)] h-[2px] border-none top-0`} />
                 </div>

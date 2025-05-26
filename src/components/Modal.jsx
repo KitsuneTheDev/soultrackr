@@ -24,7 +24,7 @@ export default function Modal() {
 
     else return(
         <div
-            className={`w-100 h-100 bg-amber-400 fixed rounded-2xl bg-day-surface dark:bg-night-surface border-1 border-day-border dark:border-night-border`}
+            className={`w-100 h-100 bg-amber-400 fixed z-100 rounded-2xl bg-day-surface dark:bg-night-surface border-1 border-day-border dark:border-night-border`}
             style={{top: `${position.top}px`, left: `${position.left}px`}}>
                 <div className="modal_-header h-[10%]">
                     <div className="modal-header-elements h-[50%] relative">
