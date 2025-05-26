@@ -128,7 +128,7 @@ export default function Weekly() {
                         );
                     })}
                 </div>
-                <div className='task-grid-container h-fit w-[92%] absolute z-10 bg-day-surface dark:bg-night-surface grid grid-cols-7 grid-template-rows:repeat(_5rem, 24) left-[9%]'>
+                <div className='task-grid-container h-fit w-[92%] absolute z-50 bg-day-surface dark:bg-night-surface grid grid-cols-7 grid-template-rows:repeat(_5rem, 24) left-[9%]'>
                     <TaskOverlay.Weekly />
                     {[...Array(168)].map((_, index) => {
                         return(
