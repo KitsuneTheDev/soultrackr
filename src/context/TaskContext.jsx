@@ -45,6 +45,8 @@ export function TaskProvider({ children }) {
         for (const [day, list] of Object.entries(grouped)) {
             results[day] = groupOverlappingTasks(list);
         }
+        console.log("results --->", results);
+        return results;
     }, [grouped]);
 
     const values = {

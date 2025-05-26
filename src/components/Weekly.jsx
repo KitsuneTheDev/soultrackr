@@ -140,7 +140,7 @@ export default function Weekly() {
                         );
                     })}
                 </div>
-                <div className={`relative h-fit w-[calc(91% / 7)] z-60`} style={{left: markerPosition.left, top: markerPosition.top}}>
+                <div className={`marker relative h-fit w-[96%] z-60`} style={{left: markerPosition.left, top: markerPosition.top}}>
                     <span className='absolute w-2 h-2 rounded-full bg-night-caution -translate-y-1/2'></span>
                     <hr className={`absolute bg-night-caution top-0 w-[calc(97%/7)] h-[2px] border-none top-0`} />
                 </div>

@@ -6,7 +6,7 @@ Task.Weekly = () => {
 
     return(
         <div
-        className="h-full w-full bg-day-accent z-50 dark:bg-night-accent"
+        className="h-20 w-20 bg-day-accent z-50 dark:bg-night-accent"
          >
             
         </div>
