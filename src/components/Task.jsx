@@ -11,19 +11,19 @@ Task.Weekly = ({ offsetIndex ,task }) => {
     const taskRowSpan = Math.ceil((dayjs(task.end).diff(dayjs(task.start), 'minute')) / 5);
     console.log("task row start ----------->", taskRowStart);
     console.log("task row span ------------>", taskRowSpan);
+    const taskWidth = 14.33 - (offsetIndex*2);
     const style = {
-        gridColumnStart: taskColumnStart,
+        width: `${taskWidth}%`,
         gridRowStart: `${taskRowStart}`,
-        width: `calc(100% / 7 - ${offsetIndex}%)`,
         height: `${(5 / 12 * taskRowSpan).toFixed(2)}rem`,
-        left: `${offsetIndex*2}%`
+        left: `${offsetIndex*2 + 100/7*taskColumnStart}%`
         }
 
     console.log("task in task component ----------->", task);
 
     return(
         <div
-        className="absolute bg-day-accent h-20 z-50 dark:bg-night-accent rounded-xl border-[1px] border-day-border dark:border-dark-border text-sm text-center hover:cursor-default" style={style}
+        className="absolute bg-day-accent h-20 z-70 dark:bg-night-accent pointer-events-auto rounded-xl border-[1px] border-day-border dark:border-dark-border text-sm text-center hover:cursor-default" style={style}
          >
             { task.title }
         </div>
