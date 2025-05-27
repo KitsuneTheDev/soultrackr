@@ -15,7 +15,6 @@ export default function Layout({ children }) {
             <main className={`fixed px-4 md:px-8 py-4 w-[80%] h-[calc(100%-7.5rem)] right-0 bottom-10`}>
                 { children }
                 <Modal></Modal>
-                <AddTaskButton.Floating />
             </main>
             <footer className={`fixed bottom-0 w-full text-center text-xs p-2 max-h-10 h-10 opacity-60 border-t-2 border-day-border dark:border-night-border bg-day-bg dark:bg-night-bg `}>
                 © 2025 Soultrackr

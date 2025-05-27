@@ -4,20 +4,26 @@ function Task() {};
 
 Task.Weekly = ({ offsetIndex ,task }) => {
 
-    const taskColumnStart = dayjs(task.start).day();
+    const taskColumnStart = dayjs(task.start).day() + 1;
     const taskRowStart = (dayjs(task.start).hour() * 12 + 1) + Math.floor(dayjs(task.start).minute() / 5);
-    console.log("ofset index ------------>", offsetIndex);
+    console.log("offset index ------------->", offsetIndex);
+    console.log("timediff ----------------->", dayjs(task.end).diff(dayjs(task.start), 'minute'))
+    const taskRowSpan = Math.ceil((dayjs(task.end).diff(dayjs(task.start), 'minute')) / 5);
+    console.log("task row start ----------->", taskRowStart);
+    console.log("task row span ------------>", taskRowSpan);
     const style = {
         gridColumnStart: taskColumnStart,
-        gridRowStart: taskRowStart,
-        left: `${offsetIndex*5}%`
+        gridRowStart: `${taskRowStart}`,
+        width: `calc(100% / 7 - ${offsetIndex}%)`,
+        height: `${(5 / 12 * taskRowSpan).toFixed(2)}rem`,
+        left: `${offsetIndex*2}%`
         }
 
     console.log("task in task component ----------->", task);
 
     return(
         <div
-        className="h-20 w-40 absolute bg-day-accent z-50 dark:bg-night-accent rounded-xl border-[1px] border-day-border dark:border-dark-border text-sm text-center hover:cursor-default" style={style}
+        className="absolute bg-day-accent h-20 z-50 dark:bg-night-accent rounded-xl border-[1px] border-day-border dark:border-dark-border text-sm text-center hover:cursor-default" style={style}
          >
             { task.title }
         </div>

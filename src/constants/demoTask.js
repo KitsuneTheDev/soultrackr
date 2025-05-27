@@ -51,13 +51,13 @@ const demoTask = [{
     id: 9,
     title: "Weekly Planning",
     start: "2025-06-01T08:00:00",
-    end: "2025-066-2T09:00:00"
+    end: "2025-06-01T09:00:00"
   },
   {
     id: 10,
     title: "Focus Block",
     start: "2025-05-27T11:00:00",
-    end: "2025-05-27T12:00:00"
+    end: "2025-05-27T15:00:00"
   }];
 
   export { demoTask };
