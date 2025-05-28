@@ -24,7 +24,7 @@ TaskOverlay.Weekly = () => {
         <div className="task-overlay-container absolute pointer-events-none z-50 h-full w-[100%] grid grid-cols-7 grid-rows-288 left-0">
             {
                 Object.entries(overlaps).map(([groupDate, group]) => {
-                    if(dayjs(groupDate).isBefore(startOfWeek) && dayjs(groupDate).isAfter(finishOfWeek)) return;
+                    if(dayjs(groupDate).isBefore(dayjs(startOfWeek)) || dayjs(groupDate).isAfter(dayjs(finishOfWeek))) return;
 
                     console.log("groupDate -->", groupDate);
                     console.log("group ------>", group);

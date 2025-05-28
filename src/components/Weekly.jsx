@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react"; 
+import { useState, useEffect, useRef } from "react"; 
 import { useCalendar } from '../context/CalendarContext.jsx';
 import { useModal } from '../context/ModalContext.jsx';
 import TaskOverlay from "./TaskOverlay.jsx";
 import { demoTask } from '../constants/demoTask.js';
+import { centerMarker } from "../utils/centerMarker.js";
 import dayjs from 'dayjs';
 
 
@@ -35,6 +36,9 @@ export default function Weekly() {
         return position;
     });
 
+    const markerRef = useRef();
+    const scrollContainerRef = useRef();
+
     useEffect(() =>{
         const fiveMinInterval = setInterval(() => {
             setMarkerPosition(() => {
@@ -56,6 +60,10 @@ export default function Weekly() {
         }, 1 * 60 * 1_000);
 
         return () => clearInterval(fiveMinInterval);
+    }, []);
+
+    useEffect(() => {
+        centerMarker(markerRef.current, scrollContainerRef.current);
     }, [])
 
     function handleGridClick(event) {
@@ -118,7 +126,7 @@ export default function Weekly() {
                 </div>
             </div>
             <div
-            className={`main-calendar-bottom relative w-full h-[calc(100%-7.5rem)] overflow-y-scroll overflow-x-clip`}>
+            className={`main-calendar-bottom relative w-full h-[calc(100%-7.5rem)] overflow-y-scroll overflow-x-clip`} ref={scrollContainerRef}>
                 <div className='hours-layout-container absolute bg-day-surface dark:bg-night-surface w-[9%] h-fit grid grid-cols-1 grid-rows:repeat(_5rem, 24) border-r-1 border-day-border dark:border-night-border ml-[2px]'>
                     {[...Array(24)].map((_, index) => {
                         return(
@@ -142,7 +150,7 @@ export default function Weekly() {
                     })}
                     <TaskOverlay.Weekly />
                 </div>
-                <div className={`marker absolute h-fit w-[96%] z-60`} style={markerPosition}>
+                <div className={`marker absolute h-fit w-[96%] z-60`} style={markerPosition} ref={markerRef}>
                     <span className='absolute w-2 h-2 rounded-full bg-night-caution -translate-y-1/2'></span>
                     <hr className={`absolute bg-night-caution top-0 w-[calc(97%/7)] h-[2px] border-none top-0`} />
                 </div>
