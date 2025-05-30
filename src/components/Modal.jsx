@@ -1,24 +1,30 @@
 import { useEffect, useRef, useState } from "react";
 import { useModal } from '../context/ModalContext.jsx';
 import { useTask } from '../context/TaskContext.jsx';
+import TaskForm from "./TaskForm.jsx";
 
 export default function Modal() {
     
-    const { setTasks }  = useTask();
+    const { saveTask }  = useTask();
     const { isOpen, closeModal, position } = useModal();
-    const [activeTab, setActiveTab] = useState('event');
+    const [activeTab, setActiveTab] = useState(() => {
+        return 'task';
+    });
 
-    function handleTabClick(tabType) {
-        if(tabType === "e") {
-            setTabBorder(prev => {
-                return {...prev, event: "0px", task: "4px"}
-            });
-        } else {
-            setTabBorder(prev => {
-                return {...prev, event: "4px", task: "0px"}
-            });
+    console.log("activeTab --->", activeTab);
+
+    /*
+        TASK:
+        {
+            id: Integer
+            type: "event" || "task"
+            start: Date
+            end: Date
+            title: String
+            focusLevel: Integer ([0-5])
+            exp: Integer (1/focusLevel * dayjs(end).subtract(dayjs(start, 'hour')) * profileLevelCoefficient)
         }
-    }
+    */
 
     if(!isOpen) return null;
 
@@ -45,6 +51,9 @@ export default function Modal() {
                             onClick={() => setActiveTab("task")}>Task</div>
                         <div className="row-span-1 col-span-3 flex items-center justify-center border-b-1 border-day-border dark:border-night-border rounded-t-2xl"></div>
                     </div>
+                </div>
+                <div className="modal-form-container h-[90%] mt-[10%]">
+                    {  activeTab === "task" ? <TaskForm.Task /> : <TaskForm.Event /> }
                 </div>
             </div>
     );
