@@ -27,7 +27,7 @@ export default function Weekly() {
         const gridHeightPx = 5 * 16; 
 
         const position = {
-            left: `calc(9% + ${gridWidthPercent * todayWeeklyIndex}%)`,
+            left: `calc(8.6% + ${gridWidthPercent * todayWeeklyIndex}%)`,
             top: `${(hourIndex * (gridHeightPx / 12 )).toFixed(0)}px`,
         }
 
@@ -86,7 +86,7 @@ export default function Weekly() {
         bg-day-surface dark:bg-night-surface overflow-hidden`}>
             <div
             className={`relative main-calendar-top
-            h-30 w-full`}>
+            h-30 w-full pr-[1rem]`}>
                 <div
                 className='days-container hover:cursor-default ml-[9%]
                 h-20 w-[91%]
@@ -126,7 +126,7 @@ export default function Weekly() {
                 </div>
             </div>
             <div
-            className={`main-calendar-bottom relative w-full h-[calc(100%-7.5rem)] overflow-y-scroll overflow-x-clip`} ref={scrollContainerRef}>
+            className={`main-calendar-bottom relative w-full h-[calc(100%-7.5rem)] overflow-y-scroll overflow-x-clip pr-[1rem]`} ref={scrollContainerRef}>
                 <div className='hours-layout-container absolute bg-day-surface dark:bg-night-surface w-[9%] h-fit grid grid-cols-1 grid-rows:repeat(_5rem, 24) border-r-1 border-day-border dark:border-night-border ml-[2px]'>
                     {[...Array(24)].map((_, index) => {
                         return(

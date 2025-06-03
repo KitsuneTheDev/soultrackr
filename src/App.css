@@ -4,7 +4,7 @@
 
 
 ::-webkit-scrollbar{
-    width: 10px;
+    width: 14px;
 }
 
 .calendar-container ::-webkit-scrollbar{
@@ -50,4 +50,16 @@
 
 .hours-name-container::-webkit-scrollbar{
     display: none;
+}
+
+/* DATE PICKER */
+
+::-webkit-calendar-picker-indicator{
+    opacity: 0;
+    width: 100%;
+    position: absolute;
+}
+
+::-webkit-datetime-edit-fields-wrapper{
+    width: 100%;
 }
